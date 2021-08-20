@@ -254,6 +254,10 @@ en:
   
   filters:
     search: "Search..."
+    buttons:
+      my_books: "My books"
+      all: "All"
+      filter: "Filter"
     filter_box:
       difficulty: "Difficulty"
       difficulty_box:
