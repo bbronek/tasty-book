@@ -30,6 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  helpers:
+    placeholder:
+      query:
+        text: "Search..."
+
   confirm: "Are you sure?"
   all_rights: "©2021 Tasty Book. All rights reserved."
   minutes: "minutes"
@@ -120,8 +125,13 @@ en:
     update_and_save_as_draft: "Save changes and save as draft"
     update_recipe: "Update recipe"
     add_ingredient: "Add ingredient"
+<<<<<<< HEAD
     comments: "Comments"
     got_it: "Got it"
+=======
+    
+    apply: "Apply"
+>>>>>>> 93e888f (Refractor)
 
   cook_book_recipes:
     create:
@@ -231,6 +241,7 @@ en:
     comment: "Your %{title} recipe has been commented by %{user}"
     follow: "%{follower} is now following you"
     recipe_score: "Your %{title} recipe has been scored %{score} by %{user}"
+<<<<<<< HEAD
 
   admin_panel:
     comments:
@@ -239,3 +250,24 @@ en:
     more_to_go: "more to go"
     all_comments: "all comments"
     overviewed: "overviewed"
+=======
+  
+  filters:
+    search: "Search..."
+    filter_box:
+      difficulty: "Difficulty"
+      difficulty_box:
+        easy: " Easy"
+        medium: " Medium"
+        hard: " Hard"
+      time: "Time"
+      time_box:
+        all: " all"
+        15m: " < 15m"
+        30m: " < 30m"
+        1h: " < 1h"
+        more_than_an_hour: " >= 1h"
+      categories: "Categories"
+      ingredients: "Ingredients"
+
+>>>>>>> 93e888f (Refractor)
