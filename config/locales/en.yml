@@ -131,7 +131,11 @@ en:
 =======
     
     apply: "Apply"
+<<<<<<< HEAD
 >>>>>>> 93e888f (Refractor)
+=======
+    add: "Add"
+>>>>>>> 26cfb90 (Added front-end for filtering by categories and ingredients)
 
   cook_book_recipes:
     create:
