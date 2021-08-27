@@ -9,8 +9,20 @@ class RecipesController < ApplicationController
   def index
     @sort_order = sort_order
     @sort_kind = sort_kind
+<<<<<<< HEAD
     recipes = Recipe.published.sort_by_kind_and_order(@sort_kind, @sort_order)
     @pagy, @recipes = pagy(recipes, items: per_page)
+=======
+    recipes = Recipe.sort_by_kind_and_order(@sort_kind, @sort_order)
+    @pagy, @recipes = pagy(Recipe.all, items: per_page)
+
+    respond_to do |format| 
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: "recipes/recipes", formats: [:html]), pagination: view_context.pagy_nav(@pagy) }
+      }
+    end
+>>>>>>> 0c6c81f (Add infinite scroll)
   end
 
   def show
