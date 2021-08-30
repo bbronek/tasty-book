@@ -2,6 +2,7 @@
 
 class RecipesController < ApplicationController
   DEFAULT_SORT_KIND = "title"
+<<<<<<< HEAD
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_recipe, except: %i[index new create]
   before_action :validate_sort_params!, only: [:index]
@@ -23,6 +24,26 @@ class RecipesController < ApplicationController
       }
     end
 >>>>>>> 0c6c81f (Add infinite scroll)
+=======
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_recipe, only: [:update, :update_cook_books, :show, :edit, :destroy]
+
+  def index
+    params = filters_params
+    @sort_order = params[:order].present? ? params[:order] : "ASC"
+    @sort_kind = params[:kind].present? ? params[:kind] : "title"
+    @my_books = params[:my_books].present? ? params[:my_books] : 0
+    byebug
+    recipes = Recipe.filtered_and_sorted(filters_params)
+    @pagy, @recipes = pagy(recipes, items: per_page)
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json {
+    #     render json: {entries: render_to_string(partial: "recipes/recipes", formats: [:html]), pagination: view_context.pagy_nav(@pagy)}
+    #   }
+    # end
+>>>>>>> af2d946 (Joined sorting and filtering)
   end
 
   def show
@@ -161,6 +182,11 @@ class RecipesController < ApplicationController
 
   def sort_kind
     params[:kind].presence || DEFAULT_SORT_KIND
+  end
+
+  def filters_params
+    filters_params = params[:filters]
+    filters_params ? filters_params.permit(:my_books, :kind, :order, :difficulties, :time, :categories, :ingredients) : {}
   end
 
   def query_params
