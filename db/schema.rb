@@ -127,7 +127,11 @@ ActiveRecord::Schema.define(version: 2021_08_31_091417) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.integer "difficulty", default: 0, null: false
+<<<<<<< HEAD
     t.integer "time_in_minutes_needed", default: 0, null: false
+=======
+    t.integer "time_in_minutes_needed", null: false
+>>>>>>> 9983b5d (Debugged filters)
     t.integer "layout", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"

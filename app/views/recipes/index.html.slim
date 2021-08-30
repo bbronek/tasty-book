@@ -1,6 +1,8 @@
 .px-10.mt-3
   .flex.justify-between.my-2.px-3
+  = render "filters/filters"
   - if @recipes.present?
+<<<<<<< HEAD
     = render "filters/filters"
     div[data-controller="infinite-scroll" data-action="scroll@window->infinite-scroll#scroll"]
       .flex.justify-center 
@@ -13,6 +15,14 @@
       .flex.justify-center 
 >>>>>>> 65fef4f (Debugged mybooks button)
         == pagy_nav(@pagy) if @pagy.pages > 1
+=======
+    .flex.justify-center 
+      == pagy_nav(@pagy) if @pagy.pages > 1
+    div[data-infinite-scroll-target="entries"]
+      = render "recipes"
+    .flex.justify-center 
+      == pagy_nav(@pagy) if @pagy.pages > 1
+>>>>>>> 9983b5d (Debugged filters)
   - else 
     p.text-center.mt-4
       = t("recipes.not_found")
