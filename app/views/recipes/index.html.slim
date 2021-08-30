@@ -1,5 +1,6 @@
 .px-10.mt-3
   = render "filters/filters"
+<<<<<<< HEAD
   .flex.justify-between.my-2.px-3
 <<<<<<< HEAD
   = render "filters/filters"
@@ -26,9 +27,12 @@
       == pagy_nav(@pagy) if @pagy.pages > 1
 >>>>>>> 9983b5d (Debugged filters)
 =======
+=======
+  .flex.justify-between.my-3.px-3
+>>>>>>> 694266d (fix styling of filters)
     .flex.items-center
       == pagy_nav(@pagy) if @pagy.pages > 1
-    = render "sort_form"
+    = render "recipes/sort_form"
   - if @recipes.present?
 <<<<<<< HEAD
     = render @recipes

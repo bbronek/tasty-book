@@ -31,6 +31,7 @@ closeBtn.addEventListener('click', e => {
     toggleColor('btn_filter');
 })
 
+<<<<<<< HEAD
 if(myBooks){
     myBooks.addEventListener("click", e => {
         if(current_scope == 1){
@@ -57,6 +58,14 @@ if(all){
         })
         current_scope = 0;
     })
+=======
+function deleteFromList(fieldset, type){
+    if(type == "ingredient"){
+        ingredients_list.removeChild(fieldset);
+    }else{
+        categories_list.removeChild(fieldset);
+    }
+>>>>>>> 694266d (fix styling of filters)
 }
 
 //sorting recipes js:
