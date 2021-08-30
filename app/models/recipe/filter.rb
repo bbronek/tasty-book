@@ -18,7 +18,7 @@ class Recipe::Filter
     end
 
     if query_params[:ingredients].present?
-      scope = scope.joins(:ingredients).where("ingredients.name IN (?)", query_params[:ingredients])
+      scope = scope.joins(:ingredients).where("ingredients.name IN (?)", query_params[:ingredients]).group(:id,:name).having("count(distinct ingredients.name) = ?",query_params[:ingredients].length)
     end
 
     if query_params[:time].present?
