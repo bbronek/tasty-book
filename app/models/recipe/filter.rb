@@ -64,6 +64,6 @@ class Recipe::Filter
 >>>>>>> af2d946 (Joined sorting and filtering)
     end
 
-    scope
+    scope.distinct
   end
 end
