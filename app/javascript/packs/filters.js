@@ -34,25 +34,17 @@ closeBtn.addEventListener('click', e => {
 <<<<<<< HEAD
 if(myBooks){
     myBooks.addEventListener("click", e => {
-        if(current_scope == 1){
-            return
-        }
         scopes.forEach(i=>{
             i.value = 1;
         })
-        current_scope = 1;
     })
 }
 
 if(all){
     all.addEventListener("click", e => {
-        if(current_scope == 0){
-            return
-        }
         scopes.forEach(i=>{
             i.value = 0;
         })
-        current_scope = 0;
     })
 =======
 function deleteFromList(fieldset, type){
