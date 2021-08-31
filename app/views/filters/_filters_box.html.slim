@@ -101,15 +101,33 @@
         .font-medium.text-gray-700
           = t("filters.filter_box.categories")
         div#categories.pt-2
+<<<<<<< HEAD
         = link_to_add_fields("filters/categories_field", "category", form)
   
   
+=======
+          - for c in @categories
+              = render partial: "filters/categories_field", locals: {form: form, name: c}
+        = link_to_add_fields("filters/categories_field", "category", form, {name: nil})
+
+>>>>>>> d5a9d11 (fix sorting by score, styles of filters)
       .flex.flex-col.items-center
         .font-medium.text-gray-700
           = t("filters.filter_box.ingredients")
         div#ingredients.pt-2
+<<<<<<< HEAD
         = link_to_add_fields("filters/ingredient_field", "ingredient", form)
     .flex.justify-center.mt-3
       = form.submit t("buttons.apply"), class: "btn-secondary", data: { disable_with: false }
 >>>>>>> 694266d (fix styling of filters)
 = javascript_pack_tag('filters')
+=======
+          - for i in @ingredients
+            = render partial: "filters/ingredient_field", locals: {form: form, name: i}
+        = link_to_add_fields("filters/ingredient_field", "ingredient", form, {name: nil})
+
+    .flex.items-center.justify-center.mt-3
+        = form.submit t("buttons.apply"), class: "btn-secondary", data: { disable_with: false }
+        = button_tag(t("buttons.clear_filters"), type: "buttons", id: "clear_filters", class: "btn-primary")
+        = button_tag(t('buttons.cancel'), id: "cancel", type: "button", class: "btn-primary")
+>>>>>>> d5a9d11 (fix sorting by score, styles of filters)
