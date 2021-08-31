@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2021_08_31_091417) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "title", null: false
+    t.text "preparation_description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
@@ -131,19 +132,14 @@ ActiveRecord::Schema.define(version: 2021_08_31_091417) do
     t.integer "time_in_minutes_needed", default: 0, null: false
 =======
     t.integer "time_in_minutes_needed", null: false
+<<<<<<< HEAD
 >>>>>>> 9983b5d (Debugged filters)
     t.integer "layout", default: 0, null: false
+=======
+>>>>>>> 4949837 (Debugged tests)
     t.integer "status", default: 0, null: false
+    t.integer "layout", default: 0, null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
-  end
-
-  create_table "sections", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "body", null: false
-    t.bigint "recipe_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id"], name: "index_sections_on_recipe_id"
   end
 
   create_table "users", force: :cascade do |t|
