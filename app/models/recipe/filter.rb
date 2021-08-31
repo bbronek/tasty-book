@@ -5,10 +5,17 @@ class Recipe::Filter
 =======
   def filter(scope, filters_params)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> af2d946 (Joined sorting and filtering)
 
 =======
 >>>>>>> 663e8e3 (Debugged searching recipes)
+=======
+    if filters_params[:search].present? && filters_params[:search] != ""
+      scope = scope.searched(filters_params[:search])
+    end
+
+>>>>>>> 2638d8f (fix filtering trough search query)
     if filters_params[:my_books] == "1" && filters_params[:current_user].present?
       scope = scope.joins(:cook_books).where(cook_books: {user_id: filters_params[:current_user]})
     end
