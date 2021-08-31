@@ -128,7 +128,11 @@ en:
 <<<<<<< HEAD
     comments: "Comments"
     got_it: "Got it"
+<<<<<<< HEAD
 =======
+=======
+    clear_filters: "Clear filters"
+>>>>>>> 663e8e3 (Debugged searching recipes)
     
     apply: "Apply"
 <<<<<<< HEAD

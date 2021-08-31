@@ -30,8 +30,12 @@
       == pagy_nav(@pagy) if @pagy.pages > 1
     = render "sort_form"
   - if @recipes.present?
+<<<<<<< HEAD
     = render @recipes
 >>>>>>> cc76e5f (change positioning of filtering tools)
+=======
+    = render "recipes/recipes"
+>>>>>>> 663e8e3 (Debugged searching recipes)
   - else 
     p.text-center.mt-4
       = t("recipes.not_found")

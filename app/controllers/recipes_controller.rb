@@ -33,6 +33,7 @@ class RecipesController < ApplicationController
     if current_user
       params[:current_user] = current_user
     end
+<<<<<<< HEAD
     @sort_order = params[:order].present? ? params[:order] : "ASC"
     @sort_kind = params[:kind].present? ? params[:kind] : "title"
     @my_books = params[:my_books].present? ? params[:my_books] : 0
@@ -46,6 +47,11 @@ class RecipesController < ApplicationController
     #   }
     # end
 >>>>>>> af2d946 (Joined sorting and filtering)
+=======
+    set_filters_variables(params)
+    recipes = Recipe.filtered_and_sorted(params)
+    @pagy, @recipes = pagy(recipes, items: per_page)
+>>>>>>> 663e8e3 (Debugged searching recipes)
   end
 
   def show
@@ -175,20 +181,23 @@ class RecipesController < ApplicationController
     end
   end
 
-  def validate_sort_params!
-    sort_params = params.permit(:page, :items, :kind, :order)
-    validator = RecipesSortParamsValidator.new(sort_params)
-    return if validator.valid?
-    redirect_to recipes_path
-  end
-
-  def sort_kind
-    params[:kind].presence || DEFAULT_SORT_KIND
-  end
-
   def filters_params
     filters_params = params[:filters]
+<<<<<<< HEAD
     filters_params ? filters_params.permit(:my_books, :kind, :order, :difficulties, :time, :categories, :ingredients) : {}
+=======
+    filters_params ? filters_params.permit(:my_books, :kind, :order, :time, difficulties: [], categories: [], ingredients: []) : {}
+  end
+
+  def set_filters_variables(params)
+    @sort_order = params[:order].present? ? params[:order] : "ASC"
+    @sort_kind = params[:kind].present? ? params[:kind] : "title"
+    @my_books = params[:my_books].present? ? params[:my_books] : 0
+    @time = params[:time].present? ? params[:time] : "all"
+    @difficulties = params[:difficulties].present? ? params[:difficulties] : []
+    @categories = params[:categories].present? ? params[:categories] : []
+    @ingredients = params[:ingredients].present? ? params[:ingredients] : []
+>>>>>>> 663e8e3 (Debugged searching recipes)
   end
 
   def query_params

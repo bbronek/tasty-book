@@ -42,6 +42,7 @@ class Recipe < ApplicationRecord
   has_and_belongs_to_many :categories
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   scope :published, -> { where(status: :published) }
   scope :drafted, -> { where(status: :draft) }
   scope :sort_by_default, ->(sort_kind, sort_order) {
@@ -83,6 +84,8 @@ class Recipe < ApplicationRecord
   # end
 >>>>>>> af2d946 (Joined sorting and filtering)
 
+=======
+>>>>>>> 663e8e3 (Debugged searching recipes)
   accepts_nested_attributes_for :ingredients_recipes,
     allow_destroy: true,
     reject_if: ->(attributes) { attributes[:ingredient_name].blank? }
@@ -133,6 +136,6 @@ class Recipe < ApplicationRecord
 
   scope :published, -> { where(status: :published) }
   scope :drafted, -> { where(status: :draft) }
-  scope :searched, -> (text) { Recipe.where("LOWER(title) LIKE :text", text: "%#{text.downcase}%") }
+  scope :searched, ->(text) { Recipe.where("LOWER(title) LIKE :text", text: "%#{text.downcase}%") }
   scope :filtered_and_sorted, ->(filters_params) { Recipe::Filter.new.filter(self, filters_params) }
 end
