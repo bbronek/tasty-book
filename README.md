@@ -3,6 +3,12 @@
 [![Rails](https://img.shields.io/badge/rails-6.1.4-brightgreen.svg)](https://rubygems.org/gems/rails/versions/6.1.4)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 
+<!-- LINK TO APP -->
+**Link to application:**
+```sh
+http://rag-recipe-book.herokuapp.com
+```
+
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 * [Getting Started](#getting-started)
@@ -80,27 +86,3 @@ List of usefull commands
 bundle exec rspec --format doc
 ```
 
-<!-- PRODUCTION -->
-## Production
-Link to application
-```sh
-http://rag-recipe-book.herokuapp.com/
-```
-List of usefull commands
-1. Add remote to your workspace
-```sh
-heroku git:remote -a rag-recipe-book -r staging
-```
-2. Run deploy
-```sh
-git push staging
-```
-3. Run migrations on server
-```sh
-heroku run rails db:migrate
-```
-4. Populate database on server
-```sh
-heroku run rails db:seed
-heroku run rails db:seed:replant
-```
