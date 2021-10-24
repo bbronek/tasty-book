@@ -137,5 +137,9 @@
     .flex.items-center.justify-center.mt-3
         = form.submit t("buttons.apply"), class: "btn-secondary", data: { disable_with: false }
         = button_tag(t("buttons.clear_filters"), type: "buttons", id: "clear_filters", class: "btn-primary")
+<<<<<<< HEAD
         = button_tag(t('buttons.cancel'), id: "cancel", type: "button", class: "btn-primary")
 >>>>>>> d5a9d11 (fix sorting by score, styles of filters)
+=======
+        = button_to(t('buttons.cancel'),recipes_path , class: "btn-primary")
+>>>>>>> ac1f3b6 (Fix cancel option in filter box)
