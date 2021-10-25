@@ -1,12 +1,15 @@
 .px-10.mt-3
-  .flex.justify-between.my-2.px-3
+  = render "filters/filters"
+  .flex.justify-between.my-3.px-3
     .flex.items-center
       == pagy_nav(@pagy) if @pagy.pages > 1
-    = render "sort_form"
+    = render "recipes/sort_form"
   - if @recipes.present?
-    = render @recipes
+    = render "recipes/recipes"
   - else 
     p.text-center.mt-4
       = t("recipes.not_found")
-  .flex.justify-center.my-2
+  .flex.my-2
     == pagy_nav(@pagy) if @pagy.pages > 1
+
+= javascript_pack_tag 'filters'

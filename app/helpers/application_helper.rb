@@ -35,6 +35,11 @@ module ApplicationHelper
     html_options
   end
 
+  def link_to_add_fields(partial, type, builder, locals = {})
+    field = render(partial, locals.merge!(form: builder))
+    content_tag(:a, I18n.t("buttons.add"), data: {prepend: field, type: type}, class: "btn-secondary")
+  end
+
   def avatar_for_user_or_guest(user)
     user&.default_or_attached_avatar || "https://res.cloudinary.com/hp7f0176d/image/upload/v1629268606/sample/blank-profile-picture.png"
   end

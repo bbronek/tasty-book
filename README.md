@@ -16,7 +16,6 @@ http://rag-recipe-book.herokuapp.com
   * [Installation](#installation)
 * [Development](#development)
 * [Test](#test)
-* [Production](#production)
 
 <!-- GETTING STARTED -->
 ## Getting Started

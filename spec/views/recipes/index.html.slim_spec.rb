@@ -3,6 +3,9 @@ require "rails_helper"
 RSpec.describe "recipes/index", type: :view do
   include Pagy::Backend
   let(:user) { create(:user) }
+  before { assign(:difficulties, []) }
+  before { assign(:ingredients, []) }
+  before { assign(:categories, []) }
 
   context "with no recipes" do
     before do
@@ -41,7 +44,7 @@ RSpec.describe "recipes/index", type: :view do
     end
 
     it "doesn't display the dropdown menu" do
-      expect(rendered).not_to match /dropdown/
+      expect(rendered).not_to match /drop-menu/
     end
 
     it "doesn't display pagination" do
@@ -69,7 +72,7 @@ RSpec.describe "recipes/index", type: :view do
     end
 
     it "displays the dropdown menu" do
-      expect(rendered).to match /dropdown/
+      expect(rendered).to match /drop-menu/
     end
 
     it "doesn't allow moving to previous page" do
@@ -79,6 +82,29 @@ RSpec.describe "recipes/index", type: :view do
     it "allows moving to next page" do
       expect(rendered).to match /page next/
       expect(rendered).not_to match /page next disabled/
+    end
+  end
+
+  context "when searching recipes" do
+    before do
+      @recipes = create_list(:recipe, 1, title: "one")
+      @recipes << create(:recipe, title: "two")
+      @recipes << create(:recipe, title: "three")
+      @pagy, @recipes = pagy_array(@recipes, items: 10)
+      visit recipes_path
+    end
+
+    it "displays only recipes with valid title", js: true do
+      find(:css, "#query_text").set("one")
+      sleep(1)
+      expect(page).to have_content("one")
+      expect(page).not_to have_content("two")
+      expect(page).not_to have_content("three")
+      find(:css, "#query_text").set("")
+      sleep(1)
+      expect(page).to have_content("one")
+      expect(page).to have_content("two")
+      expect(page).to have_content("three")
     end
   end
 end

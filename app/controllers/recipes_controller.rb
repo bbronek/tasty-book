@@ -2,14 +2,16 @@
 
 class RecipesController < ApplicationController
   DEFAULT_SORT_KIND = "title"
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :set_recipe, except: %i[index new create]
-  before_action :validate_sort_params!, only: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_recipe, only: [:update, :update_favourite, :update_cook_books, :show, :edit, :destroy]
 
   def index
-    @sort_order = sort_order
-    @sort_kind = sort_kind
-    recipes = Recipe.published.sort_by_kind_and_order(@sort_kind, @sort_order)
+    params = filters_params
+    if current_user
+      params[:current_user] = current_user
+    end
+    set_filters_variables(params)
+    recipes = Recipe.published.filtered_and_sorted(params)
     @pagy, @recipes = pagy(recipes, items: per_page)
   end
 
@@ -45,7 +47,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     @recipe.resize_image if params[:recipe].key?(:image)
-
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: t(".notice") }
@@ -68,9 +69,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:id])
-
     @recipe.destroy if @recipe.user == current_user || current_user.admin?
-
     respond_to do |format|
       format.html { redirect_to recipes_path, notice: t(".notice") }
     end
@@ -140,14 +139,19 @@ class RecipesController < ApplicationController
     end
   end
 
-  def validate_sort_params!
-    sort_params = params.permit(:page, :items, :kind, :order)
-    validator = RecipesSortParamsValidator.new(sort_params)
-    return if validator.valid?
-    redirect_to recipes_path
+  def filters_params
+    filters_params = params[:filters]
+    filters_params ? filters_params.permit(:search, :my_books, :kind, :order, :time, difficulties: [], categories: [], ingredients: []) : {}
   end
 
-  def sort_kind
-    params[:kind].presence || DEFAULT_SORT_KIND
+  def set_filters_variables(params)
+    @search_text = params[:search].present? ? params[:search] : ""
+    @sort_order = params[:order].present? ? params[:order] : "ASC"
+    @sort_kind = params[:kind].present? ? params[:kind] : "title"
+    @my_books = params[:my_books].present? ? params[:my_books] : "0"
+    @time = params[:time].present? ? params[:time] : "all"
+    @difficulties = params[:difficulties].present? ? params[:difficulties] : []
+    @categories = params[:categories].present? ? params[:categories] : []
+    @ingredients = params[:ingredients].present? ? params[:ingredients] : []
   end
 end

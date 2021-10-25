@@ -1,11 +1,9 @@
 @import "~tailwindcss/base";
-
 @mixin btn-base{
   @apply w-auto inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 m-1 text-base font-medium;
   &:focus{ @apply outline-none ring-2 ring-offset-2 }
   &:hover{ @apply cursor-pointer }
 }
-
 @mixin input-base{
   @apply px-3;
   label{ @apply block capitalize tracking-wide text-gray-700 text-xs font-bold mb-2 }
@@ -16,14 +14,12 @@
   input[type=text]:hover, input[type=password]:hover, input[type=email]:hover, input[type=number]:hover, textarea:hover{ @apply cursor-text }
   input:focus{ @apply outline-none border-gray-500 bg-gray-50 text-gray-700 }
 }
-
 .btn-primary{
   @include btn-base;
   @apply text-gray-700 bg-white;
   &:hover{ @apply bg-gray-100 }
   &:focus{ @apply ring-gray-500 }
 }
-
 .btn-secondary{
   @include btn-base;
   @apply text-white bg-black opacity-80;
@@ -37,13 +33,6 @@
   &:focus{ @apply ring-gray-700 }
 }
 
-.btn-danger{
-  @include btn-base;
-  @apply text-white bg-red-700 opacity-80;
-  &:hover{ @apply opacity-90 }
-  &:focus{ @apply ring-gray-700 }
-}
-
 .btn-nav{
   @apply inline-flex justify-center items-center text-base font-medium text-white bg-none;
   &:hover{ @apply text-mustard }
@@ -52,7 +41,6 @@
   @apply inline-flex justify-center items-center text-base font-medium text-mustard bg-none;
   &:hover{ @apply opacity-80 }
 }
-
 .input-text{ @include input-base }
 .input-text-white{
   @include input-base;
@@ -62,7 +50,6 @@
     &:focus{ @apply bg-gray-50 }
   }
 }
-
 @mixin input-select{
   @include input-base;
   select{ @apply pr-6 }
@@ -76,7 +63,6 @@
     &:hover{ @apply bg-gray-100 }
   }
 }
-
 @mixin input-file-inner-button{
   @apply text-white text-sm font-normal bg-black opacity-80 border-none p-2.5 mr-2;
   &:hover{ @apply opacity-75 }
@@ -100,12 +86,10 @@
     &:hover{ @apply bg-gray-100 }
   }
 }
-
 .checkbox-list{
   @apply px-5 py-3 space-y-2 overflow-auto sm:px-6;
   max-height: 300px;
 }
-
 .input-checkbox{
   @apply border-2 border-gray-200 rounded-lg shadow-md;
   &:hover{ @apply bg-gray-100 opacity-80 }
@@ -114,13 +98,11 @@
   .label-text{ @apply flex-grow flex items-center justify-center m-3 mr-0 }
   .checkboxer{ @apply cursor-pointer bg-white border-4 rounded-md border-gray-300 flex justify-center items-center h-6 w-6 m-3 ml-0 }
   svg{ @apply opacity-0 }
-
   input:checked +label{
     .checkboxer{ @apply border-none bg-green-400 }
     svg{ @apply opacity-100 }
   }
 }
-
 .side-menu{
   @apply flex flex-col;
   a{
@@ -131,7 +113,6 @@
   }
   .current{ @apply opacity-100 shadow-md }
 }
-
 .minimal-menu{
   @apply flex space-x-4;
   .menu-item{
@@ -147,9 +128,7 @@
     &:hover{ @apply opacity-100 }
   }
 }
-
 .heart-button{
   &:hover{ @apply fill-red-700 cursor-pointer }
 }
-
 form.hide-submit input[type="submit"] { display: none;}

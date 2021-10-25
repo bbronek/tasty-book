@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :comments
     patch :update_cook_books, on: :member
     patch :update_favourite, on: :member
+    post :filter, to: "filters#index", on: :collection
   end
   resources :cook_books
   resources :recipe_scores, only: :create
