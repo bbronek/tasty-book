@@ -1,47 +1,15 @@
 .px-10.mt-3
   = render "filters/filters"
-<<<<<<< HEAD
-  .flex.justify-between.my-2.px-3
-<<<<<<< HEAD
-  = render "filters/filters"
-  - if @recipes.present?
-<<<<<<< HEAD
-    = render "filters/filters"
-    div[data-controller="infinite-scroll" data-action="scroll@window->infinite-scroll#scroll"]
-      .flex.justify-center 
-        == pagy_nav(@pagy) if @pagy.pages > 1
-      div[data-infinite-scroll-target="entries"]
-        = render "recipes"
-<<<<<<< HEAD
-      div[data-infinite-scroll-target="pagination" class="hidden"]
-=======
-      .flex.justify-center 
->>>>>>> 65fef4f (Debugged mybooks button)
-        == pagy_nav(@pagy) if @pagy.pages > 1
-=======
-    .flex.justify-center 
-      == pagy_nav(@pagy) if @pagy.pages > 1
-    div[data-infinite-scroll-target="entries"]
-      = render "recipes"
-    .flex.justify-center 
-      == pagy_nav(@pagy) if @pagy.pages > 1
->>>>>>> 9983b5d (Debugged filters)
-=======
-=======
   .flex.justify-between.my-3.px-3
->>>>>>> 694266d (fix styling of filters)
     .flex.items-center
       == pagy_nav(@pagy) if @pagy.pages > 1
     = render "recipes/sort_form"
   - if @recipes.present?
-<<<<<<< HEAD
-    = render @recipes
->>>>>>> cc76e5f (change positioning of filtering tools)
-=======
     = render "recipes/recipes"
->>>>>>> 663e8e3 (Debugged searching recipes)
   - else 
     p.text-center.mt-4
       = t("recipes.not_found")
   .flex.my-2
     == pagy_nav(@pagy) if @pagy.pages > 1
+
+= javascript_pack_tag 'filters'

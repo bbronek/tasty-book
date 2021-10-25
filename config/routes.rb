@@ -14,11 +14,8 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :comments
     patch :update_cook_books, on: :member
-<<<<<<< HEAD
     patch :update_favourite, on: :member
-=======
     post :filter, to: "filters#index", on: :collection
->>>>>>> f8ddcaa (Rebase part fix)
   end
   resources :cook_books
   resources :recipe_scores, only: :create

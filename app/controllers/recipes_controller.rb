@@ -2,29 +2,6 @@
 
 class RecipesController < ApplicationController
   DEFAULT_SORT_KIND = "title"
-<<<<<<< HEAD
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :set_recipe, except: %i[index new create]
-  before_action :validate_sort_params!, only: [:index]
-
-  def index
-    @sort_order = sort_order
-    @sort_kind = sort_kind
-<<<<<<< HEAD
-    recipes = Recipe.published.sort_by_kind_and_order(@sort_kind, @sort_order)
-    @pagy, @recipes = pagy(recipes, items: per_page)
-=======
-    recipes = Recipe.sort_by_kind_and_order(@sort_kind, @sort_order)
-    @pagy, @recipes = pagy(recipes, items: per_page)
-
-    respond_to do |format|
-      format.html
-      format.json {
-        render json: {entries: render_to_string(partial: "recipes/recipes", formats: [:html]), pagination: view_context.pagy_nav(@pagy)}
-      }
-    end
->>>>>>> 0c6c81f (Add infinite scroll)
-=======
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_recipe, only: [:update, :update_favourite, :update_cook_books, :show, :edit, :destroy]
 
@@ -33,25 +10,9 @@ class RecipesController < ApplicationController
     if current_user
       params[:current_user] = current_user
     end
-<<<<<<< HEAD
-    @sort_order = params[:order].present? ? params[:order] : "ASC"
-    @sort_kind = params[:kind].present? ? params[:kind] : "title"
-    @my_books = params[:my_books].present? ? params[:my_books] : 0
-    recipes = Recipe.filtered_and_sorted(filters_params)
-    @pagy, @recipes = pagy(recipes, items: per_page)
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json {
-    #     render json: {entries: render_to_string(partial: "recipes/recipes", formats: [:html]), pagination: view_context.pagy_nav(@pagy)}
-    #   }
-    # end
->>>>>>> af2d946 (Joined sorting and filtering)
-=======
     set_filters_variables(params)
     recipes = Recipe.published.filtered_and_sorted(params)
     @pagy, @recipes = pagy(recipes, items: per_page)
->>>>>>> 663e8e3 (Debugged searching recipes)
   end
 
   def show
@@ -86,7 +47,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     @recipe.resize_image if params[:recipe].key?(:image)
-
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, notice: t(".notice") }
@@ -109,9 +69,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:id])
-
     @recipe.destroy if @recipe.user == current_user || current_user.admin?
-
     respond_to do |format|
       format.html { redirect_to recipes_path, notice: t(".notice") }
     end
@@ -183,14 +141,7 @@ class RecipesController < ApplicationController
 
   def filters_params
     filters_params = params[:filters]
-<<<<<<< HEAD
-<<<<<<< HEAD
-    filters_params ? filters_params.permit(:my_books, :kind, :order, :difficulties, :time, :categories, :ingredients) : {}
-=======
-    filters_params ? filters_params.permit(:my_books, :kind, :order, :time, difficulties: [], categories: [], ingredients: []) : {}
-=======
     filters_params ? filters_params.permit(:search, :my_books, :kind, :order, :time, difficulties: [], categories: [], ingredients: []) : {}
->>>>>>> 2638d8f (fix filtering trough search query)
   end
 
   def set_filters_variables(params)
@@ -202,6 +153,5 @@ class RecipesController < ApplicationController
     @difficulties = params[:difficulties].present? ? params[:difficulties] : []
     @categories = params[:categories].present? ? params[:categories] : []
     @ingredients = params[:ingredients].present? ? params[:ingredients] : []
->>>>>>> 663e8e3 (Debugged searching recipes)
   end
 end

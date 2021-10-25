@@ -26,12 +26,11 @@ document.querySelectorAll(".delete").forEach(i => {
     })
 })
 
-closeBtn.addEventListener('click', e => {
-    toggleDisplay('filters','block'); 
-    toggleColor('btn_filter');
-})
+// closeBtn.addEventListener('click', e => {
+//     toggleDisplay('filters','block'); 
+//     toggleColor('btn_filter');
+// })
 
-<<<<<<< HEAD
 if(myBooks){
     myBooks.addEventListener("click", e => {
         scopes.forEach(i=>{
@@ -46,14 +45,6 @@ if(all){
             i.value = 0;
         })
     })
-=======
-function deleteFromList(fieldset, type){
-    if(type == "ingredient"){
-        ingredients_list.removeChild(fieldset);
-    }else{
-        categories_list.removeChild(fieldset);
-    }
->>>>>>> 694266d (fix styling of filters)
 }
 
 //sorting recipes js:
@@ -76,4 +67,4 @@ document.getElementById("clear_filters").addEventListener("click", e => {
     document.querySelectorAll("input[name='filters[difficulties][]']").forEach(i => {
         i.checked = false;
     })
-})
+}) 

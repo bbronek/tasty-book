@@ -35,17 +35,11 @@ module ApplicationHelper
     html_options
   end
 
-  def link_to_add_fields(partial, type, builder)
-    field = render partial: partial, locals: {form: builder}
-<<<<<<< HEAD
-    content_tag(:a, I18n.t("buttons.add"), data: {prepend: field, type: type}, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-1 m-1 cursor-pointer border border-blue-700 rounded")
+  def link_to_add_fields(partial, type, builder, locals = {})
+    field = render(partial, locals.merge!(form: builder))
+    content_tag(:a, I18n.t("buttons.add"), data: {prepend: field, type: type}, class: "btn-secondary")
   end
 
-=======
-    content_tag(:a, I18n.t("buttons.add"), data: {prepend: field, type: type}, class: "btn-secondary")
-  end  
-  
->>>>>>> 694266d (fix styling of filters)
   def avatar_for_user_or_guest(user)
     user&.default_or_attached_avatar || "https://res.cloudinary.com/hp7f0176d/image/upload/v1629268606/sample/blank-profile-picture.png"
   end

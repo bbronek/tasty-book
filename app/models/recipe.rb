@@ -41,51 +41,6 @@ class Recipe < ApplicationRecord
 
   has_and_belongs_to_many :categories
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  scope :published, -> { where(status: :published) }
-  scope :drafted, -> { where(status: :draft) }
-  scope :sort_by_default, ->(sort_kind, sort_order) {
-    order(sort_kind => sort_order)
-  }
-  scope :sort_by_score, ->(sort_order, nulls_presence) {
-    left_outer_joins(:recipe_scores)
-      .select("recipes.*")
-      .group("recipes.id")
-      .order("avg(recipe_scores.score) #{sort_order} #{nulls_presence}")
-  }
-  scope :sort_by_kind_and_order, ->(sort_kind, sort_order) do
-    case sort_kind
-    when "title", "difficulty", "time_in_minutes_needed"
-      sort_by_default(sort_kind, sort_order)
-    when "score"
-      nulls_presence = sort_order == "DESC" ? "NULLS LAST" : "NULLS FIRST"
-      sort_by_score(sort_order, nulls_presence)
-    end
-  end
-=======
-  # scope :sort_by_default, ->(sort_kind, sort_order) {
-  #   order(sort_kind => sort_order)
-  # }
-  # scope :sort_by_score, ->(sort_order, nulls_presence) {
-  #   left_outer_joins(:recipe_scores)
-  #     .select("recipes.*")
-  #     .group("recipes.id")
-  #     .order("avg(recipe_scores.score) #{sort_order} #{nulls_presence}")
-  # }
-  # scope :sort_by_kind_and_order, ->(sort_kind, sort_order) do
-  #   case sort_kind
-  #   when "title", "difficulty", "time_in_minutes_needed"
-  #     sort_by_default(sort_kind, sort_order)
-  #   when "score"
-  #     nulls_presence = sort_order == "DESC" ? "NULLS LAST" : "NULLS FIRST"
-  #     sort_by_score(sort_order, nulls_presence)
-  #   end
-  # end
->>>>>>> af2d946 (Joined sorting and filtering)
-
-=======
->>>>>>> 663e8e3 (Debugged searching recipes)
   accepts_nested_attributes_for :ingredients_recipes,
     allow_destroy: true,
     reject_if: ->(attributes) { attributes[:ingredient_name].blank? }

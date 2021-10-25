@@ -60,9 +60,9 @@ module RecipeHelper
     active_button_class = "bg-gray-400 text-white"
     unactive_button_class = "bg-gray-200 text-gray-700 hover:bg-gray-300"
     if btn == t("filters.buttons.my_books")
-      return "#{(@my_books == "1" ? active_button_class : unactive_button_class)} #{button_class} rounded-l-lg"
+      "#{@my_books == "1" ? active_button_class : unactive_button_class} #{button_class} rounded-l-lg"
     else
-      return "#{( @my_books != "1" ? active_button_class : unactive_button_class)} #{button_class} rounded-r-lg"
+      "#{@my_books != "1" ? active_button_class : unactive_button_class} #{button_class} rounded-r-lg"
     end
   end
 end
