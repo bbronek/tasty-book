@@ -3,12 +3,6 @@
 [![Rails](https://img.shields.io/badge/rails-6.1.4-brightgreen.svg)](https://rubygems.org/gems/rails/versions/6.1.4)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/testdouble/standard)
 
-<!-- LINK TO APP -->
-**Link to application:**
-```sh
-http://rag-recipe-book.herokuapp.com
-```
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 * [Getting Started](#getting-started)
